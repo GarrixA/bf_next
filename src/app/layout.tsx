@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "baseFood",
   description: "Base food client",
   icons: {
-    icon: "/sss.png",
+    icon: "/icons/bf_icon.png",
   },
 };
 
