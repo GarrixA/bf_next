@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { profileModalVariants } from "@/utils/variants";
 import { motion } from "framer-motion";

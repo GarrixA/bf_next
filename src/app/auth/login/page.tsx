@@ -5,6 +5,7 @@ import { store } from "@/store";
 import Logo from "@public/logos/7.png";
 import { TbChartBar, TbCloudComputing, TbPlant, TbUsers } from "react-icons/tb";
 import { Provider } from "react-redux";
+import Image from "next/image";
 
 const Login = () => {
   const features = [
@@ -26,8 +27,10 @@ const Login = () => {
           />
         </div>
         <div className="absolute top-8 left-8 z-30">
-          <img
+          <Image
             className="text-white w-[8rem] font-bold"
+            width={8}
+            height={8}
             src={Logo.src}
             alt="baseFood"
           />

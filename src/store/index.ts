@@ -1,6 +1,8 @@
-import type { Middleware, MiddlewareAPI } from "@reduxjs/toolkit";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import appReducer from "@/store/reducer/app";
+import { themeApi } from "@/store/reducer/themeReducer";
+import baseAPI from "@/utils/api";
 import { PERSIST_KEY } from "@/utils/config/constants";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   FLUSH,
   PAUSE,
@@ -12,9 +14,6 @@ import {
   persistStore,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import appReducer from "@/store/reducer/app";
-import baseAPI from "@/utils/api";
-import { themeApi } from "@/store/reducer/themeReducer";
 
 const rootReducer = combineReducers({
   [baseAPI.reducerPath]: baseAPI.reducer,

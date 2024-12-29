@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import baseAPI from "@/utils/api";
 
 const userApi = baseAPI.injectEndpoints({
