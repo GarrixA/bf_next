@@ -1,6 +1,9 @@
 "use client";
 
 /* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import GoogleButton from "@/components/common/buttons/GoogleButton";
 import { LoginTypes } from "@/types/fileTypes";
 import { useLoginMutation } from "@/store/actions/auth";
@@ -43,7 +46,7 @@ const LoginFormComponent = () => {
   const onSubmit = async (data: LoginTypes) => {
     try {
       const res = await login(data).unwrap();
-      console.log(res, "Reeeeeesssssponse");
+      // console.log(res, "Reeeeeesssssponse");
       if (res && res?.auth_token) {
         Cookies.set("access_token", res?.auth_token);
         toast.success("You're logged in");

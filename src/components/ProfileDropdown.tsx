@@ -1,5 +1,5 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import ProfileModal from "@/components/ProfileModal";

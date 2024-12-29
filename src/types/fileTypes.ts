@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { linkSchema } from "../validations/formValidations";
 import * as yup from "yup";
 

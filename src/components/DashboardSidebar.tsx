@@ -1,20 +1,26 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-unescaped-entities */
 import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
+import Logo from "@public/logos/7.png";
+import whiteLogo from "@public/logos/base_food_white_logo.png";
+import { useTheme } from "next-themes";
+import NextLink from "next/link";
 import { useState } from "react";
-import { AiOutlineBell, AiOutlineShop } from "react-icons/ai";
-import { FaBars, FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
+import { AiOutlineBell } from "react-icons/ai";
+import {
+  FaBars,
+  FaChevronDown,
+  FaChevronUp,
+  FaPlus,
+  FaShoppingBasket,
+} from "react-icons/fa";
 import { GoHome } from "react-icons/go";
 import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { LuNewspaper } from "react-icons/lu";
 import { MdOutlineLogout } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
-import NextLink from "next/link";
-import Logo from "@public/logos/7.png";
-import whiteLogo from "@public/logos/base_food_white_logo.png";
-import { FaShoppingBasket } from "react-icons/fa";
 import ModeToggle from "./ModeToggle";
-import { useTheme } from "next-themes";
 
 const tooltipTheme = createTheme({
   components: {
