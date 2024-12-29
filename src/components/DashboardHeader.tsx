@@ -13,18 +13,18 @@ interface HeaderProps {
 const Header = ({ toggleSidebar, isCollapsed }: HeaderProps) => {
   return (
     <header
-      className={`fixed ${
+      className={`fixed font-helveticaNue font-normal ${
         isCollapsed
           ? "lg:w-[100%] lg:ml-0 pl-24 pr-6 "
           : "lg:w-[85%] lg:ml-[15%] px-8"
-      } flex items-center w-[100%] bg-white justify-between p-4 dark:bg-black dark:text-white border-b border-gray-200 z-20 dark:border-gray-700`}
+      } flex items-center w-[100%] bg-white justify-between p-4 dark:bg-black dark:text-white border-b border-gray-200 z-20 `}
     >
       <div className="flex items-center gap-3 relative lg:w-[25%]">
         <button onClick={toggleSidebar} className="lg:hidden">
           <IoMdMenu className="text-gray-900 dark:text-white text-3xl md:text-4xl" />
         </button>
         <div className="hidden md:flex items-center bg-bg-gray dark:bg-gray-800 rounded py-2 px-3 w-full">
-          <FaSearch className="text-gray-500 dark:text-gray-400" />
+          <FaSearch className="text-gray-500 dark:text-gray-400 lg:text-sm" />
           <input
             type="text"
             placeholder="Search by product or location"

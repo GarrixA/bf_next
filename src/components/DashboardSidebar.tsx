@@ -1,8 +1,7 @@
 "use client";
 
-/* eslint-disable no-console */
 import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineBell, AiOutlineShop } from "react-icons/ai";
 import { FaBars, FaChevronDown, FaChevronUp, FaPlus } from "react-icons/fa";
 import { GoHome } from "react-icons/go";
@@ -10,14 +9,12 @@ import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { LuNewspaper } from "react-icons/lu";
 import { MdOutlineLogout } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
-import { useSelector } from "react-redux";
 import NextLink from "next/link";
 import Logo from "@public/logos/7.png";
 import whiteLogo from "@public/logos/base_food_white_logo.png";
-import { RootState } from "@/store/index";
-import ModeToggle from "./ModeToggle";
 import { FaShoppingBasket } from "react-icons/fa";
-import { useGetThemeQuery } from "@/store/reducer/themeReducer";
+import ModeToggle from "./ModeToggle";
+import { useTheme } from "next-themes";
 
 const tooltipTheme = createTheme({
   components: {
@@ -52,31 +49,24 @@ const Sidebar = ({
   setIsCollapsed,
   toggleSidebar,
 }: SidebarProps) => {
-  const handleItemClick = () => {
-    // Toggle sidebar visibility on item click
-    if (isSidebarVisible) {
-      toggleSidebar();
-    }
-  };
+  const { resolvedTheme, setTheme } = useTheme();
   const [isDashboardsOpen, setIsDashboardsOpen] = useState(false);
   const [openLogoutModal, setOpenLogoutModal] = useState(false);
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
   const toggleDashboards = () => setIsDashboardsOpen(!isDashboardsOpen);
 
-  const { data: theme = "dark" } = useGetThemeQuery(); // Fetch the current theme
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.querySelector("body")?.classList.add("dark");
-    } else {
-      document.querySelector("body")?.classList.remove("dark");
+  const handleItemClick = () => {
+    if (isSidebarVisible) {
+      toggleSidebar();
     }
-  }, [theme]);
+  };
 
   const handleLogoutClick = () => {
     setOpenLogoutModal(true);
   };
+
+  console.log(resolvedTheme);
 
   const handleCloseModal = () => {
     setOpenLogoutModal(false);
@@ -90,13 +80,13 @@ const Sidebar = ({
   return (
     <>
       <div
-        className={`fixed z-40 left-0 top-0 h-[100vh] ${
+        className={`fixed z-40 left-0 top-0 h-[100vh] font-helveticaNue font-normal ${
           isCollapsed
             ? "w-20 border-r border-bg-gray dark:border-[#404040]"
             : "w-[80%] sm:w-[40%] md:w-[60%] lg:w-[16%] md:transition-none transition-all duration-300"
-        } border-r border-bg-gray dark:border-[#404040] bg-white px-4 lg:px-2 2xl:px-4 flex flex-col  justify-between dark:bg-black transform ${
+        } border-r border-bg-gray dark:border-[#404040] bg-white px-4 lg:px-2 2xl:px-4 flex flex-col justify-between dark:bg-black transform  ${
           isSidebarVisible ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0`}
+        } lg:translate-x-0 `}
       >
         <div>
           <div
@@ -106,10 +96,6 @@ const Sidebar = ({
           >
             {!isCollapsed && (
               <div className="flex items-center">
-                {/* <FiDatabase className="text-2xl text-blue-600 mr-2" />
-                <span className="text-xl logo font-bold text-blue-600">
-                  baseFood
-                </span> */}
                 <img
                   src={Logo.src}
                   alt="basefood"
@@ -196,11 +182,6 @@ const Sidebar = ({
                         </span>
                       </li>
                     </NextLink>
-                    {/* <li className="flex items-center px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer rounded">
-                      <span className="text-gray-900 dark:text-white">
-                        Dashboard 2
-                      </span>
-                    </li> */}
                     <NextLink
                       href="/dashboards/new"
                       className="flex items-center"
@@ -265,7 +246,7 @@ const Sidebar = ({
                       <FaShoppingBasket className="lg:text-sm xl:text-lg text-gray-900 dark:text-white" />
                       {!isCollapsed && (
                         <span className="ml-2 xl:ml-4 text-gray-900 dark:text-white">
-                          pricing
+                          Pricing
                         </span>
                       )}
                     </li>
@@ -274,20 +255,23 @@ const Sidebar = ({
               </NextLink>
               <ThemeProvider theme={tooltipTheme}>
                 <Tooltip
-                  title={`${isCollapsed ? "Subscriptions" : ""}`}
+                  title={`${isCollapsed ? "Logout" : ""}`}
                   placement="right"
                 >
-                  <li
-                    className="flex items-center px-2 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer rounded"
-                    onClick={handleItemClick}
+                  <button
+                    onClick={handleLogoutClick}
+                    className="flex items-center py-2 pl-2 xl:px-4 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
                   >
-                    <AiOutlineShop className="lg:text-sm xl:text-lg text-gray-900 dark:text-white" />
+                    <MdOutlineLogout className="lg:text-base md:text-2xl xl:text-lg" />
                     {!isCollapsed && (
-                      <span className="ml-2 xl:ml-4 text-gray-900 dark:text-white">
-                        Subscriptions
+                      <span
+                        className="ml-1 text-sm xl:ml-4 md:text-2xl lg:text-sm"
+                        onClick={handleItemClick}
+                      >
+                        Logout
                       </span>
                     )}
-                  </li>
+                  </button>
                 </Tooltip>
               </ThemeProvider>
             </ul>
@@ -295,36 +279,9 @@ const Sidebar = ({
         </div>
 
         <div className="flex flex-col space-y-2 py-4">
-          <ThemeProvider theme={tooltipTheme}>
-            <Tooltip title={`${isCollapsed ? "Logout" : ""}`} placement="right">
-              <button
-                onClick={handleLogoutClick}
-                className="flex items-center py-2 pl-2 xl:px-4  text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 rounded"
-              >
-                <MdOutlineLogout className="lg:text-base md:text-2xl xl:text-lg" />
-                {!isCollapsed && (
-                  <span
-                    className="ml-1 text-sm xl:ml-4 md:text-2xl lg:text-sm"
-                    onClick={handleItemClick}
-                  >
-                    Logout
-                  </span>
-                )}
-              </button>
-            </Tooltip>
-          </ThemeProvider>
-          <ModeToggle
-            sidebar={true}
-            isCollapsed={isCollapsed}
-            // isDarkMode={theme === "dark"}
-          />
+          <ModeToggle sidebar={true} isCollapsed={isCollapsed} />
         </div>
       </div>
-      {/* <LogoutModal
-        open={openLogoutModal}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmLogout}
-      /> */}
     </>
   );
 };

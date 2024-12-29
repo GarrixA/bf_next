@@ -1,37 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { helvetica } from "@/utils/config/customFonts";
 import "@/styles/globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "baseFood",
-  description: "Base food client",
-  icons: {
-    icon: "/icons/bf_icon.png",
-  },
+  description: "We",
+  icons: "/icons/bf_icon.png",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <meta name="description" content={metadata.description || ""} />
+      <link rel="icon" href={String(metadata?.icons)} />
+      <title>{String(metadata.title)}</title>
+      <body className={`${helvetica} antialiased`}>{children}</body>
     </html>
   );
 }

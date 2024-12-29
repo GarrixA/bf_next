@@ -1,13 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Sidebar from "@/components/DashboardSidebar";
 import Header from "@/components/DashboardHeader";
+import Sidebar from "@/components/DashboardSidebar";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
   const toggleSidebar = () => setIsSidebarVisible(!isSidebarVisible);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    if (resolvedTheme === "dark") {
+      document.querySelector("body")?.classList.add("dark");
+    } else {
+      document.querySelector("body")?.classList.remove("dark");
+    }
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,11 +42,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         toggleSidebar={toggleSidebar}
       />
       <div
-        className={`overflow-x-hidden flex flex-col relative w-full md:w-full gap-2 commonScroll lg:mr-3`}
+        className={`overflow-x-hidden flex flex-col relative w-full md:w-full gap-2 commonScroll lg:mr-3 h-screen`}
       >
         <Header toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
         <main
-          className={`py-4 md:px-8 mt-20 transition-transform w-full sm:w-full md:w-full ${
+          className={`py-4 md:px-8 mt-20 transition-transform w-full sm:w-full md:w-full bg-white h-full ${
             isCollapsed ? "lg:w-[95%] lg:ml-[5%]" : "lg:w-[85%] lg:ml-[15%]"
           } duration-300`}
         >
