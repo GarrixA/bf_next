@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-import { BASE_URL } from "@/utils/config/constants";
+import { BASE_API_URL } from "@/utils/config/constants";
 import { RootState } from "@/store/index";
 
 const baseAPI = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
+    baseUrl: BASE_API_URL,
     prepareHeaders: async (headers, { getState }) => {
       const {
         appReducer: { token },

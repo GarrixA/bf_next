@@ -20,7 +20,7 @@ import { LiaMoneyCheckAltSolid } from "react-icons/lia";
 import { LuNewspaper } from "react-icons/lu";
 import { MdOutlineLogout } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
-import ModeToggle from "./ModeToggle";
+// import ModeToggle from "../ModeToggle";
 
 const tooltipTheme = createTheme({
   components: {
@@ -285,7 +285,7 @@ const Sidebar = ({
         </div>
 
         <div className="flex flex-col space-y-2 py-4">
-          <ModeToggle sidebar={true} isCollapsed={isCollapsed} />
+          {/* <ModeToggle sidebar={true} isCollapsed={isCollapsed} /> */}
         </div>
       </div>
     </>

@@ -1,10 +1,10 @@
 import { FcGoogle } from "react-icons/fc";
 
-const BASE_URL = `${import.meta.url}`;
+const BASE_API_URL = `${import.meta.url}`;
 
 const GoogleButton = () => {
   const handleGoogleLogin = () => {
-    window.location.href = `${BASE_URL}auth/google`;
+    window.location.href = `${BASE_API_URL}auth/google`;
   };
   return (
     <button

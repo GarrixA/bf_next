@@ -1,7 +1,7 @@
 "use client";
 
-import Header from "@/components/DashboardHeader";
-import Sidebar from "@/components/DashboardSidebar";
+import Header from "@/components/dashboard/DashboardHeader";
+import Sidebar from "@/components/dashboard/DashboardSidebar";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -34,7 +34,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="bg-bg-gray dark:bg-black flex min-h-screen relative w-full">
+    <div className="dark:bg-black flex relative w-full">
       <Sidebar
         isSidebarVisible={isSidebarVisible}
         isCollapsed={isCollapsed}
@@ -42,11 +42,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         toggleSidebar={toggleSidebar}
       />
       <div
-        className={`overflow-x-hidden flex flex-col relative w-full md:w-full gap-2 commonScroll lg:mr-3 h-screen`}
+        className={`overflow-x-hidden flex flex-col relative w-full md:w-full gap-2 commonScroll lg:mr-3`}
       >
         <Header toggleSidebar={toggleSidebar} isCollapsed={isCollapsed} />
         <main
-          className={`py-4 md:px-8 mt-20 transition-transform w-full sm:w-full md:w-full bg-white h-full ${
+          className={`py-4 md:px-8 mt-20 transition-transform w-full sm:w-full md:w-full bg-white dark:bg-black h-full ${
             isCollapsed ? "lg:w-[95%] lg:ml-[5%]" : "lg:w-[85%] lg:ml-[15%]"
           } duration-300`}
         >
