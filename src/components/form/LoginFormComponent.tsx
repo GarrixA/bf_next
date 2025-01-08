@@ -43,9 +43,9 @@ const LoginFormComponent = () => {
     event.preventDefault();
   };
 
-  const onSubmit = async (data: LoginTypes) => {
+  const onSubmit = async (values: LoginTypes) => {
     try {
-      const res = await login(data).unwrap();
+      const res = await login(values).unwrap();
       // console.log(res, "Reeeeeesssssponse");
       if (res && res?.auth_token) {
         Cookies.set("access_token", res?.auth_token);

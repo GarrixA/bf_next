@@ -12,7 +12,9 @@ export default function Home() {
         <Provider store={store}>
           <Providers>
             <RootLayout>
-              <div className=" w-full h-full text-white mt-24">Helloooooow</div>
+              <div className=" w-full h-full mt-24 text-black dark:text-white px-10">
+                Helloooooow
+              </div>
             </RootLayout>
           </Providers>
         </Provider>
