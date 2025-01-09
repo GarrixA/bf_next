@@ -59,7 +59,7 @@ const LoginFormComponent = () => {
         Cookies.set("access_token", res?.access_token);
         toast.success("Please complete profile");
         setTimeout(() => {
-          router.push("/business_information");
+          router.push("/auth/business_profile");
         }, 3500);
       } else {
         toast.error(res?.message);
@@ -149,7 +149,7 @@ const LoginFormComponent = () => {
       </form>
       {/* {error && <p className="text-red-500 text-center mt-2">{error}</p>} */}
       <div className="flex justify-center items-center w-full">
-        <Link href="/forgot_password" className="w-full">
+        <Link href="/auth/forgot_password" className="w-full">
           <button className="text-center helvetica text-sm my-5 text-brand-blue text-black">
             Forgot password?
           </button>
@@ -172,7 +172,7 @@ const LoginFormComponent = () => {
       <div className="text-sm">
         <h1 className="text-center helvetica">
           New to baseFood?
-          <Link href="/register">
+          <Link href="/auth/register">
             <b className="text-brand-blue cursor-pointer ml-2 hover:underline">
               Sign Up
             </b>
