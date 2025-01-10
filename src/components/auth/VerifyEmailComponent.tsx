@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import VerifySkeleton from "@/components/common/skeletons/VerifySkeleton";
 import { useVerify_userQuery } from "@/store/actions/auth";

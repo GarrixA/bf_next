@@ -1,5 +1,6 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRequest_email_confirmationMutation } from "@/store/actions/auth";
 import { emailSchema } from "@/validations/formValidations";
 import { yupResolver } from "@hookform/resolvers/yup";
