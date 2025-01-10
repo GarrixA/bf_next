@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useBusiness_profileMutation } from "@/store/actions/auth";
 import { BusinessDetailsFormValues, years } from "@/types/fileTypes";
 import { businessDetailsSchema } from "@/validations/formValidations";

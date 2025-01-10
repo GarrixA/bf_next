@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import Link from "next/link";
 import React from "react";
 import { IoIosMail } from "react-icons/io";

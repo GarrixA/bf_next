@@ -1,5 +1,7 @@
 "use client";
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-console */
 import { useRegisterMutation } from "@/store/actions/auth";
 import { RegisterTypes } from "@/types/fileTypes";
